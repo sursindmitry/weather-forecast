@@ -1,8 +1,8 @@
-function TopButtons() {
+function TopButtons({updateLatitude, updateLongitude, updateCityName, updateCityCountry, updateRegion}) {
     const cities = [
         {
             id: 1,
-            title: 'Новокузнецк'
+            title: 'Новокузнецк',
         },
         {
             id: 2,
