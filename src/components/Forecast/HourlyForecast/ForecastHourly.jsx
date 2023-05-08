@@ -8,12 +8,17 @@ function ForecastHourly({title, latitude, longitude}) {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`);
-            setData(response.data.hourly);
+            try {
+                const response = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`);
+                setData(response.data.hourly);
+            } catch (error) {
+                console.log(error);
+            }
         }
 
         fetchData();
     }, [latitude]);
+
 
     return (
         <div>
@@ -23,7 +28,7 @@ function ForecastHourly({title, latitude, longitude}) {
             <hr className="my-2"/>
 
             <div className="flex flex-row items-center justify-between text-white">
-                {data ? data.time.slice(6, 12).map((date, index) => (
+                {data ? data.time.slice(new Date().getHours(), new Date().getHours() + 6).map((date, index) => (
                     <HourlyForecast key={index} date={date} temperature={data.temperature_2m[index]}/>
                 )) : <p>Загрузка...</p>}
             </div>

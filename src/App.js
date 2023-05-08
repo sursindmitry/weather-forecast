@@ -6,7 +6,6 @@ import TimeAndLocation from "./components/TimeAndLocation";
 import TemperatureAndDetails from "./components/TemperatureAndDetails";
 import ForecastDaily from "./components/Forecast/DailyForcast/ForecastDaily";
 import Footer from "./components/Footer";
-import HourlyForecast from "./components/Forecast/HourlyForecast/HourlyForecast";
 import ForecastHourly from "./components/Forecast/HourlyForecast/ForecastHourly";
 
 function App() {
@@ -38,9 +37,8 @@ function App() {
     };
 
     return (
-        <div className="bg-slate-50">
-            <div
-                className="mx-auto max-w-screen-lg py-10 px-32 bg-gradient-to-br from-cyan-800 to-blue-600 h-fit shadow-xl shadow-gray-400">
+        <div className="bg-gradient-to-br from-green-950 to-blue-900 h-fit shadow-xl shadow-gray-700">
+            <div className="mx-auto max-w-screen-lg py-10 md:px-10 lg:px-32">
                 <img src="/logo.svg" alt="Logo" className="flex justify-center w-auto"/>
                 <TopButtons
                     updateLatitude={updateLatitude}
@@ -62,7 +60,11 @@ function App() {
                     cityCountry={cityCountry}
                     region={region}
                 />
-                <TemperatureAndDetails/>
+                <TemperatureAndDetails
+                    latitude={latitude}
+                    longitude={longitude}
+                    timezone={timezone}
+                />
                 <ForecastHourly
                     title="Час"
                     latitude={latitude}
